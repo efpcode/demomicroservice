@@ -39,7 +39,13 @@ public class MicroAuthenticationController {
     public ResponseEntity<AuthResponse> authenticate(@RequestBody AuthRequestDTO request){
         Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password()));
         Instant now = Instant.now();
-        String scope = auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(" "));
+
+        String scope = auth.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .filter(role -> role.startsWith("ROLE_"))
+                .map(roleAuth -> roleAuth.substring("ROLE_".length()).toLowerCase())
+                .collect(Collectors.joining(" "));
+
 
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer(settings.getIssuer())
