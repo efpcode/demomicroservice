@@ -81,6 +81,33 @@ curl -X GET http://localhost:9080/api/quotes/random \
 Token must be valid to yield json response
 
 
+### JWT token Validation
+
+1. Open jwt.io in preferred browser.
+2. Paste token received from Login Endpoint
+3. Call the endpoint below
+    ```shell
+       curl -X GET http://localhost:9080/oauth2/.well-known/jwks.json
+    ```
+
+Endpoint above return json
+```json
+{
+	"keys": [
+		{
+			"kty": "RSA",
+			"e": "AQAB",
+			"kid": "2a8dc27b-56dc-4069-8f2d-e9b94985ca69",
+			"n": "0w2NcY4xeROLiz4Osugk82B-JcdyUcDXd2-JsbHZUiYi6UZCT2Gucvsj_Tuz2dtwFi-c5yITHfYw2nmyEbiB3dTWn3dj-d7cJ3k5S70xBcRDKDR3g2VNpYxmS-9WczdmMNMrX_BoXrlpKWrF4w7Y8NSgTXNdi9EmUvqyBCLxE_SqAodQyMxXifPsDHeZqJTPTvu7Uha4CCFoprFRE91zcD8JTlvYmTNZju09Bb80tav2OPJy953abK-lKHGaKqvMJwaFWK3sP0r5GTEnHlHM2j6nOys1chK6BJoP29wFa49xeOpuQJSdRSo0yyohfkm2hC5MYbGydKWN9G5yx2sPew"
+		}
+	]
+}
+
+```
+Copy the values "nested" between ``{}`` below ``keys``.
+4. Paste and pick the format JWK.
+
+
 ## Expected Errors
 
 When interacting with the API, the following HTTP status codes are expected in some cases:
