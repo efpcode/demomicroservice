@@ -24,6 +24,11 @@ spring:
             filters:
               - StripPrefix=1
 
+          - id: jwks-route
+            uri: ${service.auth-uri}
+            predicates:
+              - Path=/oauth2/.well-known/jwks.json
+
 
 logging:
   level:
