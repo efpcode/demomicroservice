@@ -3,6 +3,9 @@ services:
     image: apigateway:0.0.1-SNAPSHOT
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - service.auth-uri=http://auth:9081
+      - service.joke-uri=http://joke:9082
+      - service.quote-uri=http://quote:9083
     ports:
       - "9080:9080"
 
@@ -10,19 +13,20 @@ services:
     image: microauthentication:0.0.1-SNAPSHOT
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-    ports:
-      - "9081:9081"
+      - JWT_ISSUER=http://localhost:9080
+    expose:
+      - "9081"
 
   joke:
     image: joke:0.0.1-SNAPSHOT
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-    ports:
-      - "9082:9082"
+    expose:
+      - "9082"
 
   quote:
     image: quote:0.0.1-SNAPSHOT
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-    ports:
-      - "9083:9083"
+    expose:
+      - "9083"

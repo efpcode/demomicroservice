@@ -21,6 +21,7 @@ public class ApigatewayApplication {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/oauth2/.well-known/jwks.json").permitAll()
                         .requestMatchers("/api/jokes/**").hasAuthority("SCOPE_joke")
                         .requestMatchers("/api/quotes/**").hasAuthority("SCOPE_quote")
                         .anyRequest().authenticated()
