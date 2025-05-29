@@ -1,24 +1,31 @@
 spring:
   cloud:
     gateway:
-      routes:
-        - id: auth-service
-          uri: http://auth:9081
-          predicates:
-            - Path=/api/auth/login
-          filters:
-            - StripPrefix=1
+      mvc:
+        routes:
+          - id: auth-service
+            uri: ${service.auth-uri}
+            predicates:
+              - Path=/api/auth/login
+            filters:
+              - StripPrefix=1
 
-        - id: joke-service
-          uri: http://joke:9082
-          predicates:
-            - Path=/api/jokes/**
-          filters:
-            - StripPrefix=1
+          - id: joke-service
+            uri: ${service.joke-uri}
+            predicates:
+              - Path=/api/jokes/**
+            filters:
+              - StripPrefix=1
 
-        - id: quote-service
-          uri: http://quote:9083
-          predicates:
-            - Path=/api/quotes/**
-          filters:
-            - StripPrefix=1
+          - id: quote-service
+            uri: ${service.quote-uri}
+            predicates:
+              - Path=/api/quotes/**
+            filters:
+              - StripPrefix=1
+
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.cloud.gateway: DEBUG
