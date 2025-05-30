@@ -1,18 +1,18 @@
 # Welcome To Microservice Demo Project
-Brief introduction to the project, it is a misguided attempt in understanding the complexities of microservice using Spring Boot and Java. 
+Brief introduction to the project, it is a misguided attempt at understanding the complexities of microservices using Spring Boot and Java. 
 
 # Requirements
-* Docker version 28.1.1 >= version
-* Maven version Apache Maven 3.9.9 >= version
-* Java version: 24.0.1, >= version
+* Docker version >= 28.1.1
+* Maven version >= Apache Maven 3.9.9
+* Java version >= 24.0.1
 * Spring Boot 3.4.5
 
 # Project Summary
-* Strictly restless i.e. no web browser needed. Calls to endpoint can be done with ``curl`` or other terminal command. Postman, Insomnia or similar application will also work. 
-* Explores setting up and JWT Bearer custom token flow.
+* Strictly restful i.e. no web browser needed. Calls to endpoint can be done with ``curl`` or other terminal command. Postman, Insomnia or similar application will also work. 
+* Explores setting up a custom JWT Bearer token flow.
 
 ## How to Install Project
-1. Open preferred terminal 
+1. Open your preferred terminal 
 2. Paste the command below
    ```shell
     git clone https://github.com/efpcode/demomicroservice.git
@@ -20,7 +20,7 @@ Brief introduction to the project, it is a misguided attempt in understanding th
 
 ## How to Run Project
 The easiest way is to execute either the .ps1 or the .sh file present in the project.
-This will spinup a docker container
+This will spin up a docker container.
 
 ### Command 
 ```shell
@@ -28,7 +28,7 @@ This will spinup a docker container
 ```
 
 ## Demo Users Available
-These are the available demo users of the project 
+These are the demo users available in the project 
 
 | Username | Password | Services    |
 |----------|----------|-------------|
@@ -41,7 +41,7 @@ These are the available demo users of the project
 
 ### Login Endpoint 
 
-curl comand below:
+curl command below:
 ```shell
 curl -X POST http://localhost:9080/api/auth/login \
   -H "Content-Type: application/json" \
@@ -90,7 +90,7 @@ Token must be valid to yield json response
        curl -X GET http://localhost:9080/oauth2/.well-known/jwks.json
     ```
 
-Endpoint above return json
+Endpoint above returns ``JSON object``
 ```json
 {
 	"keys": [
@@ -104,7 +104,7 @@ Endpoint above return json
 }
 
 ```
-Copy the values "nested" between ``{}`` below ``keys``.
+Copy the values "nested" between ``{}`` under the ``keys`` array.
 4. Paste and pick the format JWK.
 
 
@@ -122,17 +122,17 @@ Make sure to handle these responses appropriately in your client or scripts.
 
 
 # Project Limitations
-The project is basic attempt to understand flow, so some best practice are not implemented because of time constraint and 
-trying to get a minimal viable product (MVP).
+The project is a basic attempt to understand custom OAuth flow, so some best practices are not implemented because of time constraint and 
+the goal of producing a minimal viable product (MVP).
 
 # Future Improvements and Backlog 
 1. Create User Registration Flow with DB 
-2. Create RSA Key Flow with a PEM file. Solves creating a new RSA Key after each restart.  
+2. Create RSA Key Flow with a PEM file, to avoid generating a new RSA Key Pair after each restart.  
 3. Make it a bit more user-friendly with like SPA page.
 4. Add a real Oauth 2.0 Flow with code exchange and client registration.   
 
 
-# Thank You for the read :-)
+# Thank you for the reading :-)
 
 
 
